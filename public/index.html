@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f0e8" />
+    <meta name="description" content="输入一个生活现象，一层层看清它背后的原因与本质。" />
+    <title>往里看｜从现象看到本质</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <button class="brand" type="button" data-home aria-label="返回首页">
+          <span class="brand-mark">里</span><span>往里看</span>
+        </button>
+        <button class="mode-switch" type="button" data-switch>观点对比</button>
+      </header>
+
+      <section id="singleView" class="view">
+        <div class="hero">
+          <p class="eyebrow">从现象，到本质</p>
+          <h1>把想不明白的事，<br />一层层理清楚。</h1>
+          <p class="hero-copy">输入一个生活现象，看看争议从哪里来，问题的关键又在哪里。</p>
+        </div>
+
+        <form id="singleForm" class="input-card">
+          <label for="question">你想看清什么？</label>
+          <textarea id="question" maxlength="1000" rows="4" placeholder="例如：结婚应该给彩礼吗？" required></textarea>
+          <button class="primary-button" type="submit">开始分析 <span>→</span></button>
+        </form>
+
+        <section class="examples" aria-label="示例问题">
+          <p>也可以试试</p>
+          <div class="chips">
+            <button type="button" data-example="结婚应该给彩礼吗？">结婚应该给彩礼吗？</button>
+            <button type="button" data-example="年轻人应该优先买房吗？">年轻人应该优先买房吗？</button>
+            <button type="button" data-example="工作稳定比高收入更重要吗？">工作稳定比高收入更重要吗？</button>
+          </div>
+        </section>
+
+        <section class="steps" aria-label="分析过程">
+          <div><small>01</small><span>看见争议</span></div>
+          <div><small>02</small><span>找到原因</span></div>
+          <div><small>03</small><span>得出判断</span></div>
+        </section>
+      </section>
+
+      <section id="compareView" class="view hidden">
+        <div class="compare-heading">
+          <p class="eyebrow">观点对比</p>
+          <h1>两句话，<br />到底是不是一回事？</h1>
+          <p>看看它们是基本一致，还是表面相似、根本冲突。</p>
+        </div>
+        <form id="compareForm" class="input-card compare-form">
+          <label for="viewpointA">观点 A</label>
+          <textarea id="viewpointA" maxlength="600" rows="3" placeholder="例如：结婚就应该给彩礼。" required></textarea>
+          <label for="viewpointB">观点 B</label>
+          <textarea id="viewpointB" maxlength="600" rows="3" placeholder="例如：婚姻不应该和金钱挂钩。" required></textarea>
+          <button class="primary-button" type="submit">开始对比 <span>↗</span></button>
+        </form>
+      </section>
+
+      <section id="loadingView" class="view hidden" aria-live="polite">
+        <div class="loading-wrap">
+          <div class="pulse-mark">里</div>
+          <h2>正在往里看</h2>
+          <p id="loadingText">先看清表面的争议…</p>
+          <div class="loading-line"><span></span></div>
+        </div>
+      </section>
+
+      <section id="resultView" class="view hidden" aria-live="polite">
+        <div class="result-head">
+          <button class="back-button" type="button" data-home>← 重新分析</button>
+          <span id="resultTag" class="result-tag"></span>
+          <h1 id="resultTitle"></h1>
+          <p id="resultSummary"></p>
+        </div>
+        <div id="resultContent" class="result-content"></div>
+        <button class="secondary-button" type="button" data-home>分析另一个问题</button>
+      </section>
+
+      <div id="toast" class="toast hidden" role="alert"></div>
+    </main>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
