@@ -125,6 +125,9 @@ async function serveStatic(req, res) {
 }
 
 createServer(async (req, res) => {
+  if (req.method === 'GET' && req.url === '/health') {
+    return json(res, 200, { ok: true });
+  }
   if (req.method === 'POST' && req.url === '/api/analyze') return handleAnalyze(req, res);
   if (req.method === 'GET' || req.method === 'HEAD') return serveStatic(req, res);
   return json(res, 405, { error: '请求方式不支持' });
