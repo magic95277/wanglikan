@@ -10,6 +10,7 @@
   </head>
   <body>
     <main class="app-shell">
+      <!-- 顶部栏：网站名称和功能切换按钮 -->
       <header class="topbar">
         <button class="brand" type="button" data-home aria-label="返回首页">
           <span class="brand-mark">里</span><span>往里看</span>
@@ -17,6 +18,7 @@
         <button class="mode-switch" type="button" data-switch>观点对比</button>
       </header>
 
+      <!-- 画面 1：输入一个现象进行六层分析 -->
       <section id="singleView" class="view">
         <div class="hero">
           <p class="eyebrow">从现象，到本质</p>
@@ -46,6 +48,7 @@
         </section>
       </section>
 
+      <!-- 画面 2：输入两个观点，判断它们是否真正一致 -->
       <section id="compareView" class="view hidden">
         <div class="compare-heading">
           <p class="eyebrow">观点对比</p>
@@ -61,6 +64,7 @@
         </form>
       </section>
 
+      <!-- 画面 3：等待 DeepSeek 回复时显示 -->
       <section id="loadingView" class="view hidden" aria-live="polite">
         <div class="loading-wrap">
           <div class="pulse-mark">里</div>
@@ -70,6 +74,7 @@
         </div>
       </section>
 
+      <!-- 画面 4：展示六层分析或观点对比结果 -->
       <section id="resultView" class="view hidden" aria-live="polite">
         <div class="result-head">
           <button class="back-button" type="button" data-home>← 重新分析</button>

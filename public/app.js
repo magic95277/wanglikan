@@ -1,6 +1,9 @@
+// 这是网站的“前端行为”：负责按钮、页面切换、发送问题和显示结果。
+// $ 找一个页面元素，$$ 找一组页面元素，作用类似“按名字找到按钮”。
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
+// 网站虽然只有一个网址，但内部有四个画面，按需要轮流显示。
 const views = {
   single: $('#singleView'),
   compare: $('#compareView'),
@@ -17,6 +20,7 @@ function showView(name) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// 在“现象分析”和“观点对比”两个功能之间切换。
 function switchMode() {
   currentMode = currentMode === 'single' ? 'compare' : 'single';
   $('[data-switch]').textContent = currentMode === 'single' ? '观点对比' : '现象分析';
@@ -38,6 +42,7 @@ function showToast(message) {
   showToast.timer = setTimeout(() => toast.classList.add('hidden'), 3600);
 }
 
+// 等待 AI 回复时，循环展示几句进度提示。
 function beginLoading() {
   const messages = ['先看清表面的争议…', '再找到背后的原因…', '继续往下看真正的问题…', '正在整理最终判断…'];
   let index = 0;
@@ -54,6 +59,7 @@ function escapeHtml(value = '') {
   return String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
 }
 
+// 把 DeepSeek 返回的六层分析，做成六张逐层堆叠的卡片。
 function renderSingle(data) {
   $('#resultTag').textContent = data.verdict || '分析结果';
   $('#resultTitle').textContent = data.topic || '这件事可以这样看';
@@ -68,6 +74,7 @@ function renderSingle(data) {
   `).join('');
 }
 
+// 把两个观点的共同点和冲突点做成四张卡片。
 function renderCompare(data) {
   $('#resultTag').textContent = data.relationship || '对比结果';
   $('#resultTitle').textContent = '这两个观点的关系';
@@ -87,6 +94,7 @@ function renderCompare(data) {
   `).join('');
 }
 
+// 把用户输入发送给后端 /api/analyze，再把后端结果显示出来。
 async function analyze(payload, mode) {
   beginLoading();
   try {
@@ -107,6 +115,7 @@ async function analyze(payload, mode) {
   }
 }
 
+// 下面这些代码把页面上的按钮和表单，连接到上面的功能。
 $('[data-switch]').addEventListener('click', switchMode);
 $$('[data-home]').forEach((button) => button.addEventListener('click', goHome));
 $$('[data-example]').forEach((button) => button.addEventListener('click', () => {
